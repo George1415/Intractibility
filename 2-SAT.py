@@ -30,7 +30,7 @@ for a, b in clauses:
     if expression == "":
         expression = f"({literal_to_str(a)} ∨ {literal_to_str(b)}) "
     else:
-        expression = expression + f" ∧ ({literal_to_str(a)} ∨ {literal_to_str(b)}) "
+        expression += f"∧ ({literal_to_str(a)} ∨ {literal_to_str(b)}) "
 # Implication graph represented as an adjacency list
 graph = defaultdict(list)
 reversed_graph = defaultdict(list)
