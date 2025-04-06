@@ -1,9 +1,7 @@
 clauses = [
-    [1],
-    [1,2],
-    [1,2,3,],
     [1,2,3,4],
-    [1,2]
+    [-1,-2,-3],
+    [4,1]
 ]
 new_literal = 849
 
@@ -43,17 +41,21 @@ for clause in clauses:
             new_literal += 1
         clauses_3SAT.append([-(new_literal-1), clause[-2], clause[-1]])
 
-expression = ""        
-for clause in clauses_3SAT:
-    if expression == "":
-        expression = "("
-    else:
-        expression += " ∧ ("
-    for literal in clause:
-        if expression[-1] == "(":
-            expression += f"{literal_to_str(literal)}"
+def format_expression (clauses):
+    expression = ""        
+    for clause in clauses:
+        if expression == "":
+            expression = "("
         else:
-            expression += f" ∨ {literal_to_str(literal)}"
-    expression += ")"
-print(expression)
+            expression += " ∧ ("
+        for literal in clause:
+            if expression[-1] == "(":
+                expression += f"{literal_to_str(literal)}"
+            else:
+                expression += f" ∨ {literal_to_str(literal)}"
+        expression += ")"
+    return expression
+
+print(f"The SAT expression, {format_expression(clauses)} is equivalent to")
+print(f"the 3-SAT expression, {format_expression(clauses_3SAT)}")
 
